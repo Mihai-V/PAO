@@ -112,6 +112,12 @@ public class Store {
                 case "12":
                     newWearable();
                     break;
+                case "13":
+                    removeDevice();
+                    break;
+                case "14":
+                    removeWearable();
+                    break;
                 case "Q":
                     System.out.println("Have a nice day!");
                     input = false;
@@ -129,18 +135,20 @@ public class Store {
         System.out.println("Welcome!\n");
         System.out.print("Pick an action: ");
         System.out.println();
-        System.out.println("1. Display all phones");
-        System.out.println("2. Display all phones by number of cameras");
-        System.out.println("3. Display foldable phones");
-        System.out.println("4. Display all tablets");
-        System.out.println("5. Display all laptops");
-        System.out.println("6. Display all laptops by RAM");
-        System.out.println("7. Display all laptops by storage");
-        System.out.println("8. Display all smart bands");
-        System.out.println("9. Display all smart watches");
-        System.out.println("10. Display all smart watches by size");
+        System.out.println("1. Display all phones.");
+        System.out.println("2. Display all phones by number of cameras.");
+        System.out.println("3. Display foldable phones.");
+        System.out.println("4. Display all tablets.");
+        System.out.println("5. Display all laptops.");
+        System.out.println("6. Display all laptops by RAM.");
+        System.out.println("7. Display all laptops by storage.");
+        System.out.println("8. Display all smart bands.");
+        System.out.println("9. Display all smart watches.");
+        System.out.println("10. Display all smart watches by size.");
         System.out.println("11. Add a device.");
-        System.out.println("12. Add a wearable");
+        System.out.println("12. Add a wearable.");
+        System.out.println("13. Remove a device.");
+        System.out.println("14. Remove a wearable.");
         System.out.println();
         System.out.println("To see the menu again type 'Menu'.");
         System.out.println("To exit the menu type 'Q'.");
@@ -171,6 +179,7 @@ public class Store {
     }
 
     private void displayFoldable(){
+        System.out.println("Foldable phones: \n");
         ArrayList<Phone> phones = device.getPhones();
         for (Phone item : phones){
             if (item.isFoldable() == 1)
@@ -291,7 +300,6 @@ public class Store {
     }
 
     private void displayDeviceMenu(){
-        System.out.println();
         System.out.println("1. Add a phone");
         System.out.println("2. Add a tablet");
         System.out.println("3. Add a laptop");
@@ -326,18 +334,18 @@ public class Store {
         System.out.println("Is it foldable? Type '1' if it is, or '0' otherwise.");
         int foldable = inPhone.nextInt();
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/phones.txt"));
+        Phone phone = new Phone(manufacturer, model, noOfCameras, foldable);
+        device.addPhone(phone);
+        System.out.println("The phone has been added.");
+
+        FileWriter fileWriter = new FileWriter("src/phones.txt");
         for (Phone item : phones) {
             String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getNoOfCameras() + ", " + item.isFoldable();
 
-            bufferedWriter.write(toWrite);
-            bufferedWriter.newLine();
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
         }
-        bufferedWriter.close();
-
-        Phone phone = new Phone(manufacturer, model, noOfCameras, foldable);
-        device.addPhone(phone);
-        phone.deviceID();
+        fileWriter.close();
     }
 
     private void addTablet() throws IOException {
@@ -362,18 +370,18 @@ public class Store {
             }
         }
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/tablets.txt"));
+        Tablet tablet = new Tablet(manufacturer, model, connexionType);
+        device.addTablet(tablet);
+        System.out.println("The tablet has been added.");
+
+        FileWriter fileWriter = new FileWriter("src/tablets.txt");
         for (Tablet item : tablets) {
             String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getConnexionType();
 
-            bufferedWriter.write(toWrite);
-            bufferedWriter.newLine();
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
         }
-        bufferedWriter.close();
-
-        Tablet tablet = new Tablet(manufacturer, model, connexionType);
-        device.addTablet(tablet);
-        tablet.deviceID();
+        fileWriter.close();
     }
 
     private void addLaptop() throws IOException {
@@ -401,18 +409,18 @@ public class Store {
         System.out.print("Storage capacity(in GB): ");
         int storage = inLaptop.nextInt();
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/laptops.txt"));
+        Laptop laptop = new Laptop(manufacturer, model, RAM, storage);
+        device.addLaptop(laptop);
+        System.out.println("The laptop has been added.");
+
+        FileWriter fileWriter = new FileWriter("src/laptops.txt");
         for (Laptop item : laptops) {
             String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getRAM() + ", " + item.getStorage();
 
-            bufferedWriter.write(toWrite);
-            bufferedWriter.newLine();
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
         }
-        bufferedWriter.close();
-
-        Laptop laptop = new Laptop(manufacturer, model, RAM, storage);
-        device.addLaptop(laptop);
-        laptop.deviceID();
+        fileWriter.close();
     }
 
     public void newWearable() throws IOException {
@@ -448,7 +456,6 @@ public class Store {
     }
 
     private void displayWearableMenu(){
-        System.out.println();
         System.out.println("1. Add a smart band");
         System.out.println("2. Add a smart watch");
         System.out.println();
@@ -479,18 +486,18 @@ public class Store {
         System.out.println("Does it have a color display? Type '1' if it has, or '0' otherwise.");
         int displayType = inSmartBand.nextInt();
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/smartbands.txt"));
+        SmartBand smartBand = new SmartBand(manufacturer, model, displayType);
+        wearable.addSmartBand(smartBand);
+        System.out.println("The smart band has been added.");
+
+        FileWriter fileWriter = new FileWriter("src/smartbands.txt");
         for (SmartBand item : smartBands) {
             String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getDisplayType();
 
-            bufferedWriter.write(toWrite);
-            bufferedWriter.newLine();
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
         }
-        bufferedWriter.close();
-
-        SmartBand smartBand = new SmartBand(manufacturer, model, displayType);
-        wearable.addSmartBand(smartBand);
-        smartBand.wearableID();
+        fileWriter.close();
     }
 
     private void addSmartWatch() throws IOException {
@@ -515,17 +522,218 @@ public class Store {
         System.out.print("Screen size:");
         int size = inSmartWatch.nextInt();
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/smartwatches.txt"));
+        SmartWatch smartWatch = new SmartWatch(manufacturer, model, size);
+        wearable.addSmartWatch(smartWatch);
+        System.out.println("The smart watch has been added.");
+
+        FileWriter fileWriter = new FileWriter("src/smartwatches.txt");
         for (SmartWatch item : smartWatches) {
             String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getSize();
 
-            bufferedWriter.write(toWrite);
-            bufferedWriter.newLine();
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
         }
-        bufferedWriter.close();
+        fileWriter.close();
+    }
 
-        SmartWatch smartWatch = new SmartWatch(manufacturer, model, size);
-        wearable.addSmartWatch(smartWatch);
-        smartWatch.wearableID();
+    private void removeDevice() throws IOException {
+        Scanner inDevice = new Scanner(System.in);
+        System.out.println("Hello! To remove a device follow these instructions:");
+        System.out.println("Choose what device you want to remove.");
+        System.out.println();
+
+        boolean input = true;
+        displayDeviceMenu();
+        do {
+            System.out.print("Enter your choice: ");
+            String choice = inDevice.nextLine();
+
+            switch (choice.trim()){
+                case "1":
+                    removePhone();
+                    break;
+                case "2":
+                    removeTablet();
+                    break;
+                case "3":
+                    removeLaptop();
+                    break;
+                case "S":
+                    displayRemoveDeviceMenu();
+                    break;
+                case "B":
+                    System.out.println("You will be taken to the main menu.");
+                    input = false;
+                    break;
+                default:
+                    System.out.println("Error! Invalid input.");
+            }
+        }while (input);
+    }
+
+    private void displayRemoveDeviceMenu(){
+        System.out.println("1. Remove a phone");
+        System.out.println("2. Remove a tablet");
+        System.out.println("3. Remove a laptop");
+        System.out.println();
+        System.out.println("To show the submenu again type'S'.");
+        System.out.println("To go to the main menu type 'B'.");
+        System.out.println();
+    }
+
+    private void removePhone() throws IOException {
+        Scanner inPhone = new Scanner(System.in);
+        System.out.println("Hello! To remove a phone please enter the following:");
+
+        System.out.print("Manufacturer: ");
+        String manufacturer = inPhone.nextLine();
+
+        System.out.print("Model: ");
+        String model = inPhone.nextLine();
+
+        ArrayList<Phone> phones = device.getPhones();
+        phones.removeIf(item -> (item.getManufacturer().equals(manufacturer)) && (item.getModel().equals(model)));
+
+        FileWriter fileWriter = new FileWriter("src/phones.txt");
+        for (Phone item : phones) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getNoOfCameras() + ", " + item.isFoldable();
+
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
+        }
+        fileWriter.close();
+    }
+
+    private void removeTablet() throws IOException {
+        Scanner inTablet = new Scanner(System.in);
+        System.out.println("Hello! To remove a tablet please enter the following:");
+
+        System.out.print("Manufacturer: ");
+        String manufacturer = inTablet.nextLine();
+
+        System.out.print("Model: ");
+        String model = inTablet.nextLine();
+
+        ArrayList<Tablet> tablets = device.getTablets();
+        tablets.removeIf(item -> (item.getManufacturer().equals(manufacturer)) && (item.getModel().equals(model)));
+
+        FileWriter fileWriter = new FileWriter("src/tablets.txt");
+        for (Tablet item : tablets) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getConnexionType();
+
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
+        }
+        fileWriter.close();
+    }
+
+    private void removeLaptop() throws IOException {
+        Scanner inLaptop = new Scanner(System.in);
+        System.out.println("Hello! To remove a laptop please enter the following:");
+
+        System.out.print("Manufacturer: ");
+        String manufacturer = inLaptop.nextLine();
+
+        System.out.print("Model: ");
+        String model = inLaptop.nextLine();
+
+        ArrayList<Laptop> laptops = device.getLaptops();
+        laptops.removeIf(item -> (item.getManufacturer().equals(manufacturer)) && (item.getModel().equals(model)));
+
+        FileWriter fileWriter = new FileWriter("src/laptops.txt");
+        for (Laptop item : laptops) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getRAM() + ", " + item.getStorage();
+
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
+        }
+        fileWriter.close();
+    }
+
+    public void removeWearable() throws IOException {
+        Scanner inWearable = new Scanner(System.in);
+        System.out.println("Hello! To remove a wearable follow these instructions:");
+        System.out.println("Choose what wearable you want to remove.");
+
+        boolean input = true;
+        displayWearableMenu();
+
+        do {
+            System.out.print("Enter your choice: ");
+            String choice = inWearable.nextLine();
+
+            switch (choice.trim()){
+                case "1":
+                    removeSmartBand();
+                    break;
+                case "2":
+                    removeSmartWatch();
+                    break;
+                case "S":
+                    displayRemoveWearableMenu();
+                    break;
+                case "B":
+                    System.out.println("You will be taken to the main menu.");
+                    input = false;
+                    break;
+                default:
+                    System.out.println("Error! Invalid input.");
+            }
+        }while (input);
+    }
+
+    private void displayRemoveWearableMenu(){
+        System.out.println("1. Remove a smart band");
+        System.out.println("2. Remove a smart watch");
+        System.out.println();
+        System.out.println("To show the submenu again type 'S'.");
+        System.out.println("To go to the main menu type 'B'.");
+        System.out.println();
+    }
+
+    private void removeSmartBand() throws IOException {
+        Scanner inSmartBand = new Scanner(System.in);
+        System.out.println("Hello! To remove a smart band please enter the following:");
+
+        System.out.print("Manufacturer:");
+        String manufacturer = inSmartBand.nextLine();
+
+        System.out.print("Model: ");
+        String model = inSmartBand.nextLine();
+
+        ArrayList<SmartBand> smartBands = wearable.getSmartBands();
+        smartBands.removeIf(item -> (item.getManufacturer().equals(manufacturer)) && (item.getModel().equals(model)));
+
+        FileWriter fileWriter = new FileWriter("src/smartbands.txt");
+        for (SmartBand item : smartBands) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getDisplayType();
+
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
+        }
+        fileWriter.close();
+    }
+
+    private void removeSmartWatch() throws IOException {
+        Scanner inSmartWatch = new Scanner(System.in);
+        System.out.println("Hello! To remove a smart band please enter the following:");
+
+        System.out.print("Manufacturer:");
+        String manufacturer = inSmartWatch.nextLine();
+
+        System.out.print("Model: ");
+        String model = inSmartWatch.nextLine();
+
+        ArrayList<SmartWatch> smartWatches = wearable.getSmartWatches();
+        smartWatches.removeIf(item -> (item.getManufacturer().equals(manufacturer)) && (item.getModel().equals(model)));
+
+        FileWriter fileWriter = new FileWriter("src/smartwatches.txt");
+        for (SmartWatch item : smartWatches) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getSize();
+
+            fileWriter.write(toWrite);
+            fileWriter.write('\n');
+        }
+        fileWriter.close();
     }
 }
