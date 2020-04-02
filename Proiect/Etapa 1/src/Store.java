@@ -326,13 +326,6 @@ public class Store {
 
         System.out.println("Is it foldable? Type '1' if it is, or '0' otherwise.");
         int foldable = inPhone.nextInt();
-        if ((foldable != 0) || (foldable != 1))
-        {
-            System.out.println("Invalid input! Please enter a correct input.");
-            System.out.println("Is it foldable? Type '1' if it is, or '0' otherwise.");
-            foldable = inPhone.nextInt();
-        }
-
 
         Phone phone = new Phone(manufacturer, model, noOfCameras, foldable);
         device.addPhone(phone);
@@ -433,7 +426,7 @@ public class Store {
         System.out.println("1. Add a smart band");
         System.out.println("2. Add a smart watch");
         System.out.println();
-        System.out.println("To show the submenu again type'S'.");
+        System.out.println("To show the submenu again type 'S'.");
         System.out.println("To go to the main menu type 'B'.");
         System.out.println();
     }
@@ -457,13 +450,8 @@ public class Store {
             }
         }
 
-        System.out.print("Does it have a color display? Type '1' if it has, or '0' otherwise.");
+        System.out.println("Does it have a color display? Type '1' if it has, or '0' otherwise.");
         int displayType = inSmartBand.nextInt();
-        if (displayType != 0 || displayType != 1){
-            System.out.println("Invalid input! Please enter a correct input.");
-            System.out.println("Does it have a color display? Type '1' if it has, or '0' otherwise.");
-            displayType = inSmartBand.nextInt();
-        }
 
         SmartBand smartBand = new SmartBand(manufacturer, model, displayType);
         wearable.addSmartBand(smartBand);
