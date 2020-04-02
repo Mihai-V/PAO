@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
 public class Store {
@@ -66,7 +65,7 @@ public class Store {
         smartWatchesInStock.close();
     }
 
-    public void Menu(){
+    public void Menu() throws IOException {
         Scanner in = new Scanner(System.in);
         boolean input = true;
         showMenu();
@@ -256,7 +255,7 @@ public class Store {
         }
     }
 
-    private void newDevice(){
+    private void newDevice() throws IOException {
         Scanner inDevice = new Scanner(System.in);
         System.out.println("Hello! To add a new device follow these instructions:");
         System.out.println("Choose what device you want to add.");
@@ -302,7 +301,7 @@ public class Store {
         System.out.println();
     }
 
-    private void addPhone() throws InputMismatchException{
+    private void addPhone() throws IOException {
         Scanner inPhone = new Scanner(System.in);
         System.out.println("Hello! To add a new phone please enter the following:");
 
@@ -327,12 +326,21 @@ public class Store {
         System.out.println("Is it foldable? Type '1' if it is, or '0' otherwise.");
         int foldable = inPhone.nextInt();
 
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/phones.txt"));
+        for (Phone item : phones) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getNoOfCameras() + ", " + item.isFoldable();
+
+            bufferedWriter.write(toWrite);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+
         Phone phone = new Phone(manufacturer, model, noOfCameras, foldable);
         device.addPhone(phone);
         phone.deviceID();
     }
 
-    private void addTablet(){
+    private void addTablet() throws IOException {
         Scanner inTablet = new Scanner(System.in);
         System.out.println("Hello! To add a new tablet please enter the following:");
 
@@ -354,12 +362,21 @@ public class Store {
             }
         }
 
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/tablets.txt"));
+        for (Tablet item : tablets) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getConnexionType();
+
+            bufferedWriter.write(toWrite);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+
         Tablet tablet = new Tablet(manufacturer, model, connexionType);
         device.addTablet(tablet);
         tablet.deviceID();
     }
 
-    private void addLaptop(){
+    private void addLaptop() throws IOException {
         Scanner inLaptop = new Scanner(System.in);
         System.out.println("Hello! To add a new laptop please enter the following:");
 
@@ -384,12 +401,21 @@ public class Store {
         System.out.print("Storage capacity(in GB): ");
         int storage = inLaptop.nextInt();
 
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/laptops.txt"));
+        for (Laptop item : laptops) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getRAM() + ", " + item.getStorage();
+
+            bufferedWriter.write(toWrite);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+
         Laptop laptop = new Laptop(manufacturer, model, RAM, storage);
         device.addLaptop(laptop);
         laptop.deviceID();
     }
 
-    public void newWearable(){
+    public void newWearable() throws IOException {
         Scanner inWearable = new Scanner(System.in);
         System.out.println("Hello! To add a new wearable follow these instructions:");
         System.out.println("Choose what wearable you want to add.");
@@ -431,7 +457,7 @@ public class Store {
         System.out.println();
     }
 
-    private void addSmartBand(){
+    private void addSmartBand() throws IOException {
         Scanner inSmartBand = new Scanner(System.in);
         System.out.println("Hello! To add a new smart band please enter the following:");
 
@@ -453,12 +479,21 @@ public class Store {
         System.out.println("Does it have a color display? Type '1' if it has, or '0' otherwise.");
         int displayType = inSmartBand.nextInt();
 
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/smartbands.txt"));
+        for (SmartBand item : smartBands) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getDisplayType();
+
+            bufferedWriter.write(toWrite);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+
         SmartBand smartBand = new SmartBand(manufacturer, model, displayType);
         wearable.addSmartBand(smartBand);
         smartBand.wearableID();
     }
 
-    private void addSmartWatch(){
+    private void addSmartWatch() throws IOException {
         Scanner inSmartWatch = new Scanner(System.in);
         System.out.println("Hello! To add a new smart band please enter the following:");
 
@@ -479,6 +514,15 @@ public class Store {
 
         System.out.print("Screen size:");
         int size = inSmartWatch.nextInt();
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/smartwatches.txt"));
+        for (SmartWatch item : smartWatches) {
+            String toWrite = item.getManufacturer() + ", " + item.getModel() + ", " + item.getSize();
+
+            bufferedWriter.write(toWrite);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
 
         SmartWatch smartWatch = new SmartWatch(manufacturer, model, size);
         wearable.addSmartWatch(smartWatch);
