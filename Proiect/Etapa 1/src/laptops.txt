@@ -1,0 +1,6 @@
+Apple, MacBook Pro 13", 8, 256
+Apple, MacBook Pro 16", 16, 4096
+Apple, MAcBook Air, 8, 512
+Asus, ZenBook Pro, 16, 1024
+Samsung, Notebook 9, 8, 512
+Samsung, Galaxy Book S, 8, 256
