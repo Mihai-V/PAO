@@ -10,7 +10,6 @@ import wearable.SmartBand;
 import wearable.SmartWatch;
 import wearable.Wearable;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -38,7 +38,15 @@ public class Laptop extends Device {
     }
 
     public int getStorage() {
-        return storage;
+        return this.storage;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public void setRAM(int RAM) {

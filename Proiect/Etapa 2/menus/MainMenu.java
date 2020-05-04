@@ -35,60 +35,50 @@ public class MainMenu {
                 case "1":
                     displayPhones();
                     audit.write("Phones Displayed");
-                    showMenu();
                     break;
                 case "2":
                     displayPhonesByNoOfCameras();
                     audit.write("Phones By No Of Cameras Displayed");
-                    showMenu();
                     break;
                 case "3":
                     displayFoldable();
                     audit.write("Foldables Displayed");
-                    showMenu();
                     break;
                 case "4":
                     displayTablets();
                     audit.write("Tablets Displayed");
-                    showMenu();
                     break;
                 case "5":
                     displayLaptops();
                     audit.write("Laptops Displayed");
-                    showMenu();
                     break;
                 case "6":
                     displayLaptopsByRAM();
                     audit.write("Laptops By RAM Displayed");
-                    showMenu();
                     break;
                 case "7":
                     displayLaptopsByStorage();
                     audit.write("Laptops By Storage Displayed");
-                    showMenu();
                     break;
                 case "8":
                     displaySmartBands();
                     audit.write("Smart Bands Displayed");
-                    showMenu();
                     break;
                 case "9":
                     displaySmartWatches();
                     audit.write("Smart Watches Displayed");
-                    showMenu();
                     break;
                 case "10":
                     displaySmartWatchesBySize();
                     audit.write("Smart Watches By Size Displayed");
-                    showMenu();
                     break;
                 case "11":
-                    Add deviceAddMenu = new Add(device, wearable);
+                    Add deviceAddMenu = new Add();
                     deviceAddMenu.newDevice();
                     showMenu();
                     break;
                 case "12":
-                    Add wearableAddMenu = new Add(device, wearable);
+                    Add wearableAddMenu = new Add();
                     wearableAddMenu.newWearable();
                     showMenu();
                     break;

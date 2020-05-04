@@ -15,7 +15,7 @@ public class Phone extends Device {
 
     @Override
     public void deviceID() {
-        System.out.println("device.Phone: " + this.getManufacturer() + " " + this.getModel());
+        System.out.println("Phone: " + this.getManufacturer() + " " + this.getModel());
         System.out.println("Cameras: " + this.getNoOfCameras());
         System.out.print("Foldable: ");
         if (this.isFoldable() == 1)

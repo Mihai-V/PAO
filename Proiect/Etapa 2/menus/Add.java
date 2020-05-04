@@ -14,7 +14,7 @@ public class Add {
 
     Audit audit = new Audit();
 
-    public Add(Device device, Wearable wearable) {
+    public Add() {
         this.device = new Device();
         this.wearable = new Wearable();
     }

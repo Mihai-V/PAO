@@ -29,11 +29,11 @@ public class Wearable {
         this.smartWatches = smartWatches;
     }
 
-    public void addSmartBand(SmartBand smartBand){
+    public void addSmartBand(SmartBand smartBand) {
         smartBands.add(smartBand);
     }
 
-    public void addSmartWatch(SmartWatch smartWatch){
+    public void addSmartWatch(SmartWatch smartWatch) {
         smartWatches.add(smartWatch);
     }
 }

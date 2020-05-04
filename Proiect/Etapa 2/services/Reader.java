@@ -5,7 +5,9 @@ import wearable.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.RandomAccess;
 import java.util.Scanner;
+import java.util.SplittableRandom;
 
 public class Reader {
     private static Reader reader_instance = null;
@@ -21,18 +23,16 @@ public class Reader {
         ArrayList<Phone> phones = new ArrayList<Phone>();
 
         try {
-            File phoneStock = new File("src/files/phones.csv");
-            Scanner phonesInStock = new Scanner(phoneStock);
+            RandomAccessFile phoneStock = new RandomAccessFile("src/files/phones.csv", "r");
+            String phonesInStock;
 
-            while (phonesInStock.hasNextLine()){
-                String temp = phonesInStock.nextLine();
-                String[] data = temp.split(", ");
+            while ((phonesInStock = phoneStock.readLine()) != null){
+                String[] data = phonesInStock.split(", ");
                 Phone phone = new Phone(data[0], data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 phones.add(phone);
             }
-            phonesInStock.close();
-        }
-        catch (FileNotFoundException exception) {
+            phoneStock.close();
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
 
@@ -43,18 +43,17 @@ public class Reader {
         ArrayList<Tablet> tablets = new ArrayList<Tablet>();
 
         try{
-            File tabletStock = new File("src/files/tablets.csv");
-            Scanner tabletsInStock = new Scanner(tabletStock);
+            RandomAccessFile tabletStock = new RandomAccessFile("src/files/tablets.csv", "r");
+            String tabletsInStock;
 
-            while (tabletsInStock.hasNextLine()){
-                String temp = tabletsInStock.nextLine();
-                String[] data = temp.split(",");
+            while ((tabletsInStock = tabletStock.readLine()) != null){
+                String[] data = tabletsInStock.split(", ");
                 Tablet tablet = new Tablet(data[0], data[1], data[2]);
                 tablets.add(tablet);
             }
-            tabletsInStock.close();
+            tabletStock.close();
         }
-        catch (FileNotFoundException exception) {
+        catch (IOException exception) {
             exception.printStackTrace();
         }
 
@@ -65,18 +64,17 @@ public class Reader {
         ArrayList<Laptop> laptops = new ArrayList<Laptop>();
 
         try {
-            File laptopStock = new File("src/files/laptops.csv");
-            Scanner laptopsInStock = new Scanner(laptopStock);
+            RandomAccessFile laptopStock = new RandomAccessFile("src/files/laptops.csv", "r");
+            String laptopsInStock;
 
-            while (laptopsInStock.hasNextLine()){
-                String temp = laptopsInStock.nextLine();
-                String[] data = temp.split(", ");
+            while ((laptopsInStock = laptopStock.readLine()) != null){
+                String[] data = laptopsInStock.split(", ");
                 Laptop laptop = new Laptop(data[0], data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 laptops.add(laptop);
             }
-            laptopsInStock.close();
+            laptopStock.close();
         }
-        catch (FileNotFoundException exception) {
+        catch (IOException exception) {
             exception.printStackTrace();
         }
 
@@ -87,18 +85,17 @@ public class Reader {
         ArrayList<SmartBand> smartBands = new ArrayList<SmartBand>();
 
         try {
-            File smartBandStock = new File("src/files/smartbands.csv");
-            Scanner smartBandsInStock = new Scanner(smartBandStock);
+            RandomAccessFile smartBandStock = new RandomAccessFile("src/files/smartbands.csv", "r");
+            String smartBandsInStock;
 
-            while (smartBandsInStock.hasNextLine()){
-                String temp = smartBandsInStock.nextLine();
-                String[] data = temp.split(", ");
+            while ((smartBandsInStock = smartBandStock.readLine()) != null){
+                String[] data = smartBandsInStock.split(", ");
                 SmartBand smartBand = new SmartBand(data[0], data[1], Integer.parseInt(data[2]));
                 smartBands.add(smartBand);
             }
-            smartBandsInStock.close();
+            smartBandStock.close();
         }
-        catch (FileNotFoundException exception) {
+        catch (IOException exception) {
             exception.printStackTrace();
         }
 
@@ -109,18 +106,17 @@ public class Reader {
         ArrayList<SmartWatch> smartWatches = new ArrayList<SmartWatch>();
 
         try {
-            File smartWatchStock = new File("src/files/smartwatches.csv");
-            Scanner smartWatchesInStock = new Scanner(smartWatchStock);
+            RandomAccessFile smartWatchStock = new RandomAccessFile("src/files/smartwatches.csv", "r");
+            String smartWatchesInStock;
 
-            while (smartWatchesInStock.hasNextLine()){
-                String temp = smartWatchesInStock.nextLine();
-                String[] data = temp.split(", ");
+            while ((smartWatchesInStock = smartWatchStock.readLine()) != null){
+                String[] data = smartWatchesInStock.split(", ");
                 SmartWatch smartWatch = new SmartWatch(data[0], data[1], Integer.parseInt(data[2]));
                 smartWatches.add(smartWatch);
             }
-            smartWatchesInStock.close();
+            smartWatchStock.close();
         }
-        catch (FileNotFoundException exception) {
+        catch (IOException exception) {
             exception.printStackTrace();
         }
 

@@ -28,7 +28,7 @@ public class Writer {
 
         try {
             FileWriter writer = new FileWriter("src/files/phones.csv");
-            writer.write("");
+            writer.write("\n");
 
             for (Phone item : phones)
                 writer.write(item.getManufacturer() + ", " + item.getModel() + ", " + item.getNoOfCameras() + ", " + item.isFoldable());
@@ -50,7 +50,7 @@ public class Writer {
 
         try {
             FileWriter writer = new FileWriter("src/files/tablets.csv");
-            writer.write("");
+            writer.write("\n");
 
             for (Tablet item : tablets)
                 writer.write(item.getManufacturer() + ", " + item.getModel() + ", " + item.getConnexionType());
@@ -73,7 +73,7 @@ public class Writer {
 
         try {
             FileWriter writer = new FileWriter("src/files/laptops.csv");
-            writer.write("");
+            writer.write("\n");
 
             for (Laptop item : laptops)
                 writer.write(item.getManufacturer() + ", " + item.getModel() + ", " + item.getRAM() + ", " + item.getStorage());
@@ -96,7 +96,7 @@ public class Writer {
 
         try {
             FileWriter writer = new FileWriter("src/files/smartbands.csv");
-            writer.write("");
+            writer.write("\n");
 
             for (SmartBand item : smartBands)
                 writer.write(item.getManufacturer() + ", " + item.getModel() + ", " + item.getDisplayType());
@@ -119,7 +119,7 @@ public class Writer {
 
         try {
             FileWriter writer = new FileWriter("src/files/smartwatches.csv");
-            writer.write("");
+            writer.write("\n");
 
             for (SmartWatch item : smartWatches)
                 writer.write(item.getManufacturer() + ", " + item.getModel() + ", " + item.getSize());

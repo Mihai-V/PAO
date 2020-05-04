@@ -30,6 +30,14 @@ public class Tablet extends Device {
         return connexionType;
     }
 
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public void setConnexionType(String connexionType) {
         this.connexionType = connexionType;
     }
