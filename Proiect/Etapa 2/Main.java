@@ -51,6 +51,7 @@ public class Main {
         auxSmartWatch.clear();
 
         System.out.println("Welcome!\n");
+        audit.write("Session Started.");
 
         Scanner in = new Scanner(System.in);
         boolean input = true;
@@ -121,6 +122,7 @@ public class Main {
                     break;
                 case "Q":
                     System.out.println("Have a nice day!");
+                    audit.write("Session Ended.");
                     input = false;
 
                     CSVWriter CSVWriter = new CSVWriter();
