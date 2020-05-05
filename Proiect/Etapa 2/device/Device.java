@@ -1,8 +1,6 @@
 package device;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Device {
     private static Device single = null;
@@ -51,6 +49,11 @@ public class Device {
         this.laptops.add(laptop);
     }
 
+    public static <T> void displayFunction(T[] array) {
+        for (T element : array)
+            System.out.println(element);
+    }
+
     public void displayPhones() {
         System.out.println("Phones: \n");
 
@@ -63,8 +66,8 @@ public class Device {
 
         phones.sort(new Comparator<Phone>() {
             @Override
-            public int compare(Phone phone, Phone t1) {
-                return phone.getNoOfCameras() - t1.getNoOfCameras();
+            public int compare(Phone phone1, Phone phone2) {
+                return phone1.getNoOfCameras() - phone2.getNoOfCameras();
             }
         });
 
@@ -101,8 +104,8 @@ public class Device {
 
         laptops.sort(new Comparator<Laptop>() {
             @Override
-            public int compare(Laptop laptop, Laptop t1) {
-                return laptop.getRAM() - t1.getRAM();
+            public int compare(Laptop laptop1, Laptop laptop2) {
+                return laptop1.getRAM() - laptop2.getRAM();
             }
         });
 
@@ -116,8 +119,8 @@ public class Device {
 
         laptops.sort(new Comparator<Laptop>() {
             @Override
-            public int compare(Laptop laptop, Laptop t1) {
-                return laptop.getStorage() - t1.getStorage();
+            public int compare(Laptop laptop1, Laptop laptop2) {
+                return laptop1.getStorage() - laptop2.getStorage();
             }
         });
 
@@ -126,4 +129,3 @@ public class Device {
         }
     }
 }
-
