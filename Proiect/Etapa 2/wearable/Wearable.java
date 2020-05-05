@@ -1,31 +1,33 @@
 package wearable;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Wearable {
-    private ArrayList<SmartBand> smartBands;
-    private ArrayList<SmartWatch> smartWatches;
+    private List<SmartBand> smartBands;
+    private List<SmartWatch> smartWatches;
 
     public Wearable() {
         this.smartBands = new ArrayList<SmartBand>();
         this.smartWatches = new ArrayList<SmartWatch>();
     }
 
-    public ArrayList<SmartBand> getSmartBands() {
+    public List<SmartBand> getSmartBands() {
         return smartBands;
     }
 
-    public ArrayList<SmartWatch> getSmartWatches() {
+    public List<SmartWatch> getSmartWatches() {
         return smartWatches;
     }
 
-    protected void wearableID(){}
+    protected void wearableID() {}
 
-    public void setSmartBands(ArrayList<SmartBand> smartBands) {
+    public void setSmartBands(List<SmartBand> smartBands) {
         this.smartBands = smartBands;
     }
 
-    public void setSmartWatches(ArrayList<SmartWatch> smartWatches) {
+    public void setSmartWatches(List<SmartWatch> smartWatches) {
         this.smartWatches = smartWatches;
     }
 
@@ -35,5 +37,36 @@ public class Wearable {
 
     public void addSmartWatch(SmartWatch smartWatch) {
         smartWatches.add(smartWatch);
+    }
+
+    public void displaySmartBands(){
+        System.out.println("SmartBands: \n");
+
+        for (SmartBand item : smartBands){
+            item.wearableID();
+        }
+    }
+
+    public void displaySmartWatches(){
+        System.out.println("SmartWatches: \n");
+
+        for (SmartWatch item : smartWatches){
+            item.wearableID();
+        }
+    }
+
+    public void displaySmartWatchesBySize(){
+        System.out.println("SmartWatches by size: \n");
+
+        smartWatches.sort(new Comparator<SmartWatch>() {
+            @Override
+            public int compare(SmartWatch smartWatch, SmartWatch t1) {
+                return smartWatch.getSize() - t1.getSize();
+            }
+        });
+
+        for (SmartWatch item : smartWatches){
+            item.wearableID();
+        }
     }
 }
